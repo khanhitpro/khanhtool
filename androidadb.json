@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "updated": "2026-04-16",
+  "apps": [
+    {
+      "id": "filemanager",
+      "name": "File Manager",
+      "package": "com.alphainventor.filemanager",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.alphainventor.filemanager.apk",
+      "size": "8.18 MB",
+      "enabled": true
+    },
+    {
+      "id": "settings_ai",
+      "name": "Settings Intelligence",
+      "package": "com.android.settings.intelligence",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.android.settings.intelligence.apk",
+      "size": "2.1 MB",
+      "enabled": true
+    },
+    {
+      "id": "tv_settings",
+      "name": "Android TV Settings",
+      "package": "com.android.tv.settings",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.android.tv.settings.apk",
+      "size": "16.3 MB",
+      "enabled": true
+    },
+    {
+      "id": "tivi_app",
+      "name": "Cờ Phú Vương TV",
+      "package": "com.cofvuong.tivi",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.cofvuong.tivi.apk",
+      "size": "25.4 MB",
+      "enabled": true
+    },
+    {
+      "id": "adb_tool",
+      "name": "ADB Tool",
+      "package": "com.dinhlap.adb",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.dinhlap.adb.apk",
+      "size": "1.89 MB",
+      "enabled": true
+    },
+    {
+      "id": "dlstore",
+      "name": "DL Store",
+      "package": "com.dinhlap.dlstore",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.dinhlap.dlstore.apk",
+      "size": "3.96 MB",
+      "enabled": true
+    },
+    {
+      "id": "usb_tool",
+      "name": "USB Tool",
+      "package": "com.dl.usb",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.dl.usb.apk",
+      "size": "7.07 MB",
+      "enabled": true
+    },
+    {
+      "id": "voice_mitv",
+      "name": "Voice MiTV",
+      "package": "com.example.spvoicemitv",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.example.spvoicemitv.apk",
+      "size": "2.26 MB",
+      "enabled": true
+    },
+    {
+      "id": "katniss",
+      "name": "Google Assistant TV",
+      "package": "com.google.android.katniss",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.google.android.katniss.apk",
+      "size": "27.5 MB",
+      "enabled": true
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube TV",
+      "package": "com.google.android.youtube.tv",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.google.android.youtube.tv.apk",
+      "size": "15.5 MB",
+      "enabled": true
+    },
+    {
+      "id": "xemtv",
+      "name": "Xem TV",
+      "package": "com.kt.apps.media.xemtv.beta",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.kt.apps.media.xemtv.beta.apk",
+      "size": "20.1 MB",
+      "enabled": true
+    },
+    {
+      "id": "map_voice",
+      "name": "Map Voice",
+      "package": "com.linor.vn.mapVoice",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.linor.vn.mapVoice.apk",
+      "size": "13.1 MB",
+      "enabled": true
+    },
+    {
+      "id": "keyboard",
+      "name": "LeanKey Keyboard",
+      "package": "com.liskovsoft.leankeyboard",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.liskovsoft.leankeyboard.apk",
+      "size": "4.03 MB",
+      "enabled": true
+    },
+    {
+      "id": "engine_menu",
+      "name": "Engineering Menu",
+      "package": "com.spocky.projengmenu",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.spocky.projengmenu.apk",
+      "size": "10.4 MB",
+      "enabled": true
+    },
+    {
+      "id": "appdrawer",
+      "name": "App Drawer",
+      "package": "com.tranducanh.appdrawer",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.tranducanh.appdrawer.apk",
+      "size": "599 KB",
+      "enabled": true
+    },
+    {
+      "id": "tiktoklite",
+      "name": "TikTok Lite",
+      "package": "com.zhiliaoapp.musically.go",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/com.zhiliaoapp.musically.go.apk",
+      "size": "26.4 MB",
+      "enabled": true
+    },
+    {
+      "id": "fptplay",
+      "name": "FPT Play",
+      "package": "net.fptplay.ottbox",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/net.fptplay.ottbox.apk",
+      "size": "112 MB",
+      "enabled": true
+    },
+    {
+      "id": "vtv",
+      "name": "VTV",
+      "package": "vn.khanhtv.vtv",
+      "url": "https://github.com/dinhkhackhanhdz-blip/khanhtool/releases/download/adb/vn.khanhtv.vtv.apk",
+      "size": "9.93 MB",
+      "enabled": true
+    }
+  ]
+}
