@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Tool Login TV",
+    "url": "https://raw.githubusercontent.com/dinhkhackhanhdz-blip/khanhtool/main/khanhtool/update.txt",
+    "guide": "Bật ADB trên TV → chạy tool → đăng nhập hệ thống"
+  },
+  {
+    "name": "IPTV Menu",
+    "url": "https://raw.githubusercontent.com/dinhkhackhanhdz-blip/khanhtool/main/khanhtool/codeandroid.txt",
+    "guide": "Mở trên TV → chọn kênh → dùng remote điều khiển"
+  },
+  {
+    "name": "Project TV Tools",
+    "url": "https://raw.githubusercontent.com/dinhkhackhanhdz-blip/khanhtool/main/khanhtool/setup.txt",
+    "guide": "Dùng để cài app TV, hỗ trợ Xiaomi / Android TV"
+  },
+  {
+    "name": "ADB Script Auto",
+    "url": "https://raw.githubusercontent.com/dinhkhackhanhdz-blip/khanhtool/main/khanhtool/adb.txt",
+    "guide": "Kết nối thiết bị → chạy script auto cài app"
+  },
+  {
+    "name": "Khanh Store Menu",
+    "url": "https://raw.githubusercontent.com/dinhkhackhanhdz-blip/khanhtool/main/khanhtool/store.txt",
+    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
+  },
+  {
+    "name": "Mod TikTok TV",
+    "url": "https://raw.githubusercontent.com/dinhkhackhanhdz-blip/khanhtool/main/khanhtool/tiktok.txt",
+    "guide": "Xem video TikTok full màn hình TV, tự next video"
+  }
+]
