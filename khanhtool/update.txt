@@ -1,0 +1,6 @@
+pkg update && pkg upgrade -y
+pkg install -y android-tools wget
+nano khanhtv.sh
+
+chmod +x khanhtv.sh
+./khanhtv.sh

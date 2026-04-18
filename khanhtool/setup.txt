@@ -1,0 +1,2 @@
+chmod +x khanhtv.sh
+./khanhtv.sh
