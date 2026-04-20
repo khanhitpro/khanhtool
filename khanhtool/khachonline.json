@@ -2,12 +2,12 @@
   {
     "name": "CHUẨN BỊ NỀN CHO TEMUX CHẠY",
     "url": "https://raw.githubusercontent.com/dinhkhackhanhdz-blip/khanhtool/main/khanhtool/update.txt",
-    "guide": "Coppy code này → Paste vào phần mềm vừa cài → Enter để chạy"
+    "guide": "Coppy code này → Mở phần mềm vừa cài → Paste hoặc dán vào → Enter để chạy"
   },
   {
     "name": "CODE NANO TEMUX CHUẨN NEW",
     "url": "https://raw.githubusercontent.com/khanhitpro/khanhtool/main/khanhtool/temuxmahoav3.txt",
-    "guide": "Coppy code này → Paste vào NANO → Ctrl + X + Enter → Y + Enter"
+    "guide": "Coppy code này → Paste vào NANO → Bấm lệnh để lưu Ctrl + X + Enter → Phấm phím Y + Enter để đồng ý chạy"
   },
   {
     "name": "LỆNH CHẠY TIVI KHÁC",
