@@ -5,7 +5,6 @@ BASE_URL="https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/kha
 
 set +x 2>/dev/null
 
-# ===== COLOR =====
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
@@ -13,103 +12,86 @@ BLUE='\033[1;34m'
 CYAN='\033[1;36m'
 NC='\033[0m'
 
-# ===== CHECK KEY =====
+# ===== CHECK KEY (FIX LOOP) =====
 check_key() {
-  echo -e "${CYAN}🔐 CHECK KEY...${NC}"
-
-  # FIX INPUT TERMUX
-  echo -ne "🔐 Nhập key: "
-  read -r USER_KEY
-
-  [ -z "$USER_KEY" ] && {
-    echo -e "${RED}❌ KEY TRỐNG${NC}"
-    exit 1
-  }
-
   DEVICE=$(getprop ro.serialno 2>/dev/null || hostname)
 
-  DATA=$(curl -s --connect-timeout 10 "$BASE_URL/keys.txt")
+  while true; do
+    echo -e "${CYAN}🔐 NHẬP KEY:${NC} "
+    read -r USER_KEY
 
-  [ -z "$DATA" ] && {
-    echo -e "${RED}❌ KHÔNG LOAD ĐƯỢC KEY SERVER${NC}"
-    exit 1
-  }
+    DATA=$(curl -s "$BASE_URL/keys.txt")
 
-  LINE=$(echo "$DATA" | grep "^$USER_KEY|")
+    # FIX: trim + tránh lỗi grep rỗng
+    LINE=$(echo "$DATA" | grep -E "^${USER_KEY}\|" 2>/dev/null)
 
-  [ -z "$LINE" ] && {
-    echo -e "${RED}❌ KEY SAI${NC}"
-    exit 1
-  }
+    if [ -z "$USER_KEY" ]; then
+      echo -e "${YELLOW}⚠️ CHƯA NHẬP KEY${NC}"
+      continue
+    fi
 
-  STATUS=$(echo "$LINE" | cut -d'|' -f2)
-  KEY_DEVICE=$(echo "$LINE" | cut -d'|' -f3)
+    if [ -z "$LINE" ]; then
+      echo -e "${RED}❌ KEY SAI - NHẬP LẠI${NC}"
+      continue
+    fi
 
-  [ "$STATUS" != "active" ] && {
-    echo -e "${RED}❌ KEY BỊ KHÓA${NC}"
-    exit 1
-  }
+    STATUS=$(echo "$LINE" | cut -d'|' -f2)
+    KEY_DEVICE=$(echo "$LINE" | cut -d'|' -f3)
 
-  if [ -n "$KEY_DEVICE" ] && [ "$KEY_DEVICE" != "$DEVICE" ]; then
-    echo -e "${RED}❌ SAI THIẾT BỊ${NC}"
-    exit 1
-  fi
+    if [ "$STATUS" != "active" ]; then
+      echo -e "${RED}❌ KEY BỊ KHÓA${NC}"
+      continue
+    fi
 
-  echo -e "${GREEN}✅ KEY OK${NC}"
+    if [ -n "$KEY_DEVICE" ] && [ "$KEY_DEVICE" != "$DEVICE" ]; then
+      echo -e "${RED}❌ SAI THIẾT BỊ${NC}"
+      continue
+    fi
+
+    echo -e "${GREEN}✅ KEY HỢP LỆ${NC}"
+    break
+  done
 }
 
 # ===== UPDATE =====
 check_update() {
-  echo -e "${BLUE}🔄 CHECK UPDATE...${NC}"
+  NEW_VERSION=$(curl -s "$BASE_URL/version.txt")
 
-  NEW=$(curl -s --connect-timeout 10 "$BASE_URL/version.txt")
-
-  [ -z "$NEW" ] && {
-    echo -e "${YELLOW}⚠️ KHÔNG CHECK ĐƯỢC VERSION${NC}"
-    return
-  }
-
-  if [ "$NEW" != "$VERSION" ]; then
-    echo -e "${YELLOW}🚀 UPDATE TOOL...${NC}"
-
+  if [ "$NEW_VERSION" != "$VERSION" ]; then
+    echo -e "${YELLOW}🚀 UPDATE...${NC}"
     curl -s -o tool.sh "$BASE_URL/tool.sh"
     chmod +x tool.sh
-
-    echo -e "${GREEN}✅ UPDATE DONE - RUN AGAIN${NC}"
+    echo -e "${GREEN}✅ DONE - REOPEN TOOL${NC}"
     exit 0
   fi
 }
 
 # ===== LOAD CORE =====
 load_core() {
-  echo -e "${CYAN}📦 LOAD CORE...${NC}"
+  echo -e "${BLUE}📦 LOAD CORE...${NC}"
 
-  TMP="/data/data/com.termux/files/home/core.txt"
+  TMP="/sdcard/Download/core.txt"
 
-  curl -s --connect-timeout 10 "$BASE_URL/core.txt" -o "$TMP"
+  curl -s "$BASE_URL/core.txt" -o "$TMP"
 
-  [ ! -s "$TMP" ] && {
-    echo -e "${RED}❌ LOAD CORE FAIL${NC}"
+  if [ ! -s "$TMP" ]; then
+    echo -e "${RED}❌ LOAD FAIL${NC}"
     exit 1
-  }
+  fi
 
   CODE=$(base64 -d "$TMP" 2>/dev/null)
 
-  [ -z "$CODE" ] && {
+  if [ -z "$CODE" ]; then
     echo -e "${RED}❌ DECODE FAIL${NC}"
     exit 1
-  }
+  fi
 
   bash -c "$CODE"
 }
 
-# ===== MAIN =====
+# ===== RUN =====
 clear
-
-echo -e "${GREEN}=============================="
-echo -e " TOOL XIAOMI TV PRO LOADER"
-echo -e " VERSION: $VERSION"
-echo -e "==============================${NC}"
+echo -e "${GREEN}===== TOOL LOADER =====${NC}"
 
 check_key
 check_update
