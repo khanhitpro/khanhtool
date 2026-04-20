@@ -26,30 +26,23 @@ check_key() {
     echo -e "${BLUE}╚════════════════════════════╝${NC}"
     echo ""
 
-    echo -e "${CYAN}📺 THIẾT BỊ : ${YELLOW}$DEVICE${NC}"
-    echo ""
 
-    # bật lại hiển thị input
+    # bật lại hiển thị input nhập KEY
     stty echo
-
-    # nhập KEY
     read -e -r -p "$(echo -e "${YELLOW}🔑 NHẬP MẬT KHẨUU: ${NC}")" USER_KEY
 
     # xoá khoảng trắng thừa
     USER_KEY=$(xargs <<< "$USER_KEY")
-
     echo ""
-    echo -e "${BLUE}──────────────────────────────${NC}"
-    echo -e "${CYAN}DỮ LIỆU ĐÃ NHẬP:${NC}"
     echo -e "${GREEN}$USER_KEY${NC}"
-    echo -e "${BLUE}──────────────────────────────${NC}"
     echo ""
+
 
     echo -e "${BLUE}⏳ ĐANG XÁC THỰC MẬT KHẨU...${NC}"
     sleep 0.5
-
     # lấy danh sách key
     DATA=$(curl -s --connect-timeout 5 "$BASE_URL/keys.txt")
+
 
     if [ -z "$USER_KEY" ]; then
       echo -e "${RED}❌ CHƯA NHẬP KEY${NC}"
@@ -60,7 +53,6 @@ check_key() {
     fi
 
     LINE=$(echo "$DATA" | grep -m 1 "^${USER_KEY}|")
-
     if [ -z "$LINE" ]; then
       echo -e "${RED}❌ KEY KHÔNG ĐÚNG${NC}"
       sleep 1
@@ -69,17 +61,17 @@ check_key() {
       continue
     fi
 
+
     STATUS=$(echo "$LINE" | cut -d'|' -f2)
     KEY_DEVICE=$(echo "$LINE" | cut -d'|' -f3)
-
     if [ "$STATUS" != "active" ]; then
       echo -e "${RED}❌ KEY ĐÃ BỊ KHÓA${NC}"
       sleep 1
       stty echo
       sleep 1
-
       continue
     fi
+
 
     if [ -n "$KEY_DEVICE" ] && [ "$KEY_DEVICE" != "$DEVICE" ]; then
       echo -e "${RED}❌ THIẾT BỊ KHÔNG KHỚP${NC}"
@@ -89,14 +81,23 @@ check_key() {
       continue
     fi
 
-    echo ""
-    echo -e "${GREEN}=============================="
-    echo "   ĐÃ NHẬP ĐÚNG KEY KẾT NỐI THÀNH CÔNG"
-    echo -e "==============================${NC}"
-    sleep 1
-    break
-  done
+
+echo ""
+echo -ne "${YELLOW}🔄 Đang xác thực KEY"
+for i in {1..3}; do
+    echo -ne "."
+    sleep 0.4
+done
+
+
+ echo ""
+ echo -e "${BLUE}🔐 KẾT NỐI THÀNH CÔNG${NC}"
+ echo -e "${GREEN}✔ KEY HỢP LỆ${NC} ${YELLOW}- ĐÃ XÁC THỰC OK${NC}"
+ sleep 1
+ break
+ done
 }
+
 
 # ==============================
 # KIỂM TRA CẬP NHẬT
@@ -113,41 +114,35 @@ check_update() {
   fi
 }
 
+
 # ==============================
 # TẢI CORE (CHẠY BASE64)
 # ==============================
 load_core() {
-  echo -e "${BLUE}📦 ĐANG TẢI CORE...${NC}"
-
   TMP="/sdcard/Download/core.txt"
-
   curl -s "$BASE_URL/core.txt" -o "$TMP"
-
   if [ ! -s "$TMP" ]; then
     echo -e "${RED}❌ TẢI CORE THẤT BẠI${NC}"
     exit 1
   fi
-
   CODE=$(base64 -d "$TMP" 2>/dev/null)
-
   if [ -z "$CODE" ]; then
     echo -e "${RED}❌ GIẢI MÃ THẤT BẠI${NC}"
     exit 1
   fi
-
   bash -c "$CODE"
 }
+
 
 # ==============================
 # CHẠY TOOL
 # ==============================
 clear
-echo -e "${GREEN}=============================="
-echo "     TRÌNH TẢI TOOL TV XIAOMI"
-echo -e "==============================${NC}"
+echo ""
+echo -e "${CYAN}📺 TRÌNH TẢI TOOL TV XIAOMI${NC}"
+echo -e "${GREEN}⚡ Đang khởi động hệ thống...${NC}"
+echo ""
 
-# reset terminal tránh lỗi ẩn input
-stty sane
 
 check_key
 check_update
