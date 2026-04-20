@@ -5,9 +5,9 @@
     "guide": "Bật ADB trên TV → chạy tool → đăng nhập hệ thống"
   },
   {
-    "name": "CODE NANO CHO TEMUX",
-    "url": "https://raw.githubusercontent.com/dinhkhackhanhdz-blip/khanhtool/main/khanhtool/codeandroid.txt",
-    "guide": "Mở trên TV → chọn kênh → dùng remote điều khiển"
+    "name": "CODE NANO TEMUX CHUẨN NEW",
+    "url": "https://raw.githubusercontent.com/khanhitpro/khanhtool/main/khanhtool/temuxmahoav3.txt",
+    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
   },
   {
     "name": "LỆNH CHẠY TIVI KHÁC",
@@ -15,38 +15,8 @@
     "guide": "Dùng để cài app TV, hỗ trợ Xiaomi / Android TV"
   },
   {
-    "name": "CODE NANO TEMUX V2",
-    "url": "https://raw.githubusercontent.com/khanhitpro/khanhtool/main/khanhtool/temuxv2.txt",
-    "guide": "Kết nối thiết bị → chạy script auto cài app"
-  },
-  {
-    "name": "CODE NANO TEMUX V3",
-    "url": "https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/khanhxiaomi/tool.sh",
-    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
-  },
-  {
-    "name": "CODE NANO TEMUX V4",
-    "url": "https://raw.githubusercontent.com/khanhitpro/khanhtool/refs/heads/main/khanhtool/temuxmahoa.txt",
-    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
-  },
-  {
-    "name": "CODE NANO TEMUX V5",
-    "url": "https://raw.githubusercontent.com/khanhitpro/khanhtool/main/khanhtool/temuxmaxhoav2.txt",
-    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
-  },
-  {
-    "name": "CODE NANO TEMUX V6 CHUẨN NEW",
-    "url": "https://raw.githubusercontent.com/khanhitpro/khanhtool/main/khanhtool/temuxmahoav3.txt",
-    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
-  },
-  {
-    "name": "CODE NANO TEMUX V7",
+    "name": "CODE NANO TEMUX BẢN DỰ PHÒNG",
     "url": "https://raw.githubusercontent.com/khanhitpro/khanhtool/main/khanhtool/temuxmahoav4.txt",
-    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
-  },
-  {
-    "name": "CODE NANO TEMUX V8",
-    "url": "https://raw.githubusercontent.com/khanhitpro/khanhtool/main/khanhtool/temuxmaxhoav5.txt",
     "guide": "Xem video TikTok full màn hình TV, tự next video"
   }
 ]
