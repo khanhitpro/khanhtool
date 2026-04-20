@@ -21,15 +21,23 @@ check_key() {
   while true; do
     clear
 
-    echo -e "${BLUE}╔════════════════════════════╗${NC}"
-    echo -e "${GREEN}      TOOL TV XIAOMI         ${NC}"
-    echo -e "${BLUE}╚════════════════════════════╝${NC}"
+    echo ""
+    echo -e "${CYAN}📺 TV XIAOMI AUTO TOOL${NC}"
+    echo -e "${YELLOW}⚡ CÀI ĐẶT TỰ ĐỘNG - NHANH - ỔN ĐỊNH${NC}"
+    echo -e "${GREEN}👨‍💻 KHÁNH IT | 0967.341.608${NC}"
+    echo -e "${BLUE}🔧 Hỗ trợ: ADB • APK • TV Android • SYSTEM${NC}"
+    echo ""
+    echo -e "${BLUE}🔑 HƯỚNG DẪN NHẬP MẬT KHẨU:${NC}"
+    echo -e "${WHITE}➤ Nhập KEY được cấp để tiếp tục${NC}"
+    echo -e "${WHITE}➤ KEY phân biệt chữ HOA / chữ thường${NC}"
+    echo -e "${WHITE}➤ Sai KEY sẽ không truy cập được tool${NC}"
+    echo ""
     echo ""
 
 
     # bật lại hiển thị input nhập KEY
     stty echo
-    read -e -r -p "$(echo -e "${YELLOW}🔑 NHẬP MẬT KHẨUU: ${NC}")" USER_KEY
+    read -e -r -p "$(echo -e "${YELLOW}🔑 NHẬP MẬT KHẨU: ${NC}")" USER_KEY
 
     # xoá khoảng trắng thừa
     USER_KEY=$(xargs <<< "$USER_KEY")
