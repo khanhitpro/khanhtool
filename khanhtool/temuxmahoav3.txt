@@ -34,15 +34,14 @@ check_key() {
     echo ""
     echo ""
 
+    trap 'stty echo; echo' EXIT
 
-    # bật lại hiển thị input nhập KEY
+    stty -echo
+    read -e -r -p "$(echo -e "${YELLOW}🔒 NHẬP MẬT KHẨU: ${NC}")" USER_KEY
     stty echo
-    read -e -r -p "$(echo -e "${YELLOW}🔑 NHẬP MẬT KHẨU: ${NC}")" USER_KEY
 
     # xoá khoảng trắng thừa
     USER_KEY=$(xargs <<< "$USER_KEY")
-    echo ""
-    echo -e "${GREEN}$USER_KEY${NC}"
     echo ""
 
 
