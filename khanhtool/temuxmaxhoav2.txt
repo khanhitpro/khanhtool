@@ -30,7 +30,7 @@ check_key() {
     echo ""
 
     echo -ne "${YELLOW}🔑 ENTER KEY: ${NC}"
-    read -r -p USER_KEY
+    read -r USER_KEY
     USER_KEY=$(echo "$USER_KEY" | xargs)
 
     echo ""
