@@ -20,12 +20,32 @@
     "guide": "Kết nối thiết bị → chạy script auto cài app"
   },
   {
-    "name": "TẠO CODE MÃ HOÁ",
-    "url": "https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/core.txt",
+    "name": "CODE NANO TEMUX V3",
+    "url": "https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/khanhxiaomi/tool.sh",
     "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
   },
   {
-    "name": "ĐANG UPDATE V2",
+    "name": "CODE NANO TEMUX V4 MỚI NHẤT",
+    "url": "https://raw.githubusercontent.com/khanhitpro/khanhtool/refs/heads/main/khanhtool/temuxmahoa.txt",
+    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
+  },
+  {
+    "name": "CODE NANO TEMUX V5",
+    "url": "https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/khanhxiaomi/tool.sh",
+    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
+  },
+  {
+    "name": "CODE NANO TEMUX V6",
+    "url": "https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/khanhxiaomi/tool.sh",
+    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
+  },
+  {
+    "name": "CODE NANO TEMUX V7",
+    "url": "https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/khanhxiaomi/tool.sh",
+    "guide": "Kho app TV dạng menu, chọn app để cài nhanh"
+  },
+  {
+    "name": "CODE NANO TEMUX V8",
     "url": "https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/khanhxiaomi/tool.sh",
     "guide": "Xem video TikTok full màn hình TV, tự next video"
   }
