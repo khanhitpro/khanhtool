@@ -1,0 +1,154 @@
+#!/bin/bash
+
+VERSION="4.68"
+BASE_URL="https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/khanhxiaomi"
+
+set +x 2>/dev/null
+
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[1;34m'
+CYAN='\033[1;36m'
+NC='\033[0m'
+
+# ==============================
+# KIỂM TRA KEY (GIAO DIỆN TV)
+# ==============================
+check_key() {
+  DEVICE=$(getprop ro.serialno 2>/dev/null || hostname)
+
+  while true; do
+    clear
+
+    echo -e "${BLUE}╔════════════════════════════╗${NC}"
+    echo -e "${GREEN}      TOOL TV XIAOMI         ${NC}"
+    echo -e "${BLUE}╚════════════════════════════╝${NC}"
+    echo ""
+
+    echo -e "${CYAN}📺 THIẾT BỊ : ${YELLOW}$DEVICE${NC}"
+    echo ""
+
+    # bật lại hiển thị input
+    stty echo
+
+    # nhập KEY
+    read -e -r -p "$(echo -e "${YELLOW}🔑 NHẬP MẬT KHẨUU: ${NC}")" USER_KEY
+
+    # xoá khoảng trắng thừa
+    USER_KEY=$(xargs <<< "$USER_KEY")
+
+    echo ""
+    echo -e "${BLUE}──────────────────────────────${NC}"
+    echo -e "${CYAN}DỮ LIỆU ĐÃ NHẬP:${NC}"
+    echo -e "${GREEN}$USER_KEY${NC}"
+    echo -e "${BLUE}──────────────────────────────${NC}"
+    echo ""
+
+    echo -e "${BLUE}⏳ ĐANG XÁC THỰC MẬT KHẨU...${NC}"
+    sleep 0.5
+
+    # lấy danh sách key
+    DATA=$(curl -s --connect-timeout 5 "$BASE_URL/keys.txt")
+
+    if [ -z "$USER_KEY" ]; then
+      echo -e "${RED}❌ CHƯA NHẬP KEY${NC}"
+      sleep 1
+      stty echo
+      sleep 1
+      continue
+    fi
+
+    LINE=$(echo "$DATA" | grep -m 1 "^${USER_KEY}|")
+
+    if [ -z "$LINE" ]; then
+      echo -e "${RED}❌ KEY KHÔNG ĐÚNG${NC}"
+      sleep 1
+      stty echo
+      sleep 1
+      continue
+    fi
+
+    STATUS=$(echo "$LINE" | cut -d'|' -f2)
+    KEY_DEVICE=$(echo "$LINE" | cut -d'|' -f3)
+
+    if [ "$STATUS" != "active" ]; then
+      echo -e "${RED}❌ KEY ĐÃ BỊ KHÓA${NC}"
+      sleep 1
+      stty echo
+      sleep 1
+
+      continue
+    fi
+
+    if [ -n "$KEY_DEVICE" ] && [ "$KEY_DEVICE" != "$DEVICE" ]; then
+      echo -e "${RED}❌ THIẾT BỊ KHÔNG KHỚP${NC}"
+      sleep 1
+      stty echo
+      sleep 1
+      continue
+    fi
+
+    echo ""
+    echo -e "${GREEN}=============================="
+    echo "   ĐÃ NHẬP ĐÚNG KEY KẾT NỐI THÀNH CÔNG"
+    echo -e "==============================${NC}"
+    sleep 1
+    break
+  done
+}
+
+# ==============================
+# KIỂM TRA CẬP NHẬT
+# ==============================
+check_update() {
+  NEW_VERSION=$(curl -s "$BASE_URL/version.txt")
+
+  if [ "$NEW_VERSION" != "$VERSION" ]; then
+    echo -e "${YELLOW}🚀 ĐANG CẬP NHẬT TOOL...${NC}"
+    curl -s -o tool.sh "$BASE_URL/tool.sh"
+    chmod +x tool.sh
+    echo -e "${GREEN}✅ ĐÃ CẬP NHẬT - MỞ LẠI TOOL${NC}"
+    exit 0
+  fi
+}
+
+# ==============================
+# TẢI CORE (CHẠY BASE64)
+# ==============================
+load_core() {
+  echo -e "${BLUE}📦 ĐANG TẢI CORE...${NC}"
+
+  TMP="/sdcard/Download/core.txt"
+
+  curl -s "$BASE_URL/core.txt" -o "$TMP"
+
+  if [ ! -s "$TMP" ]; then
+    echo -e "${RED}❌ TẢI CORE THẤT BẠI${NC}"
+    exit 1
+  fi
+
+  CODE=$(base64 -d "$TMP" 2>/dev/null)
+
+  if [ -z "$CODE" ]; then
+    echo -e "${RED}❌ GIẢI MÃ THẤT BẠI${NC}"
+    exit 1
+  fi
+
+  bash -c "$CODE"
+}
+
+# ==============================
+# CHẠY TOOL
+# ==============================
+clear
+echo -e "${GREEN}=============================="
+echo "     TRÌNH TẢI TOOL TV XIAOMI"
+echo -e "==============================${NC}"
+
+# reset terminal tránh lỗi ẩn input
+stty sane
+
+check_key
+check_update
+load_core
