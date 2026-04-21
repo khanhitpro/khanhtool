@@ -110,7 +110,7 @@ done
 # ==============================
 load_core() {
   URL="https://github.com/khanhitpro/khanhtool/releases/download/adb/core.txt"
-  TMP="/sdcard/Download/core.txt"
+  TMP="/storage/shared/apktool/core.txt"
 
   echo -e "${YELLOW}📥 Đang tải core...${NC}"
   curl -fsSL "$URL" -o "$TMP" || {
