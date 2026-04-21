@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION="4.68"
-BASE_URL="https://raw.githubusercontent.com/khanhitxiaomi/khanhitxiaomi/main/khanhxiaomi"
+BASE_URL="https://raw.githubusercontent.com/khanhitpro/khanhtool/main/android"
 
 set +x 2>/dev/null
 
@@ -105,41 +105,35 @@ done
  done
 }
 
-
 # ==============================
-# KIỂM TRA CẬP NHẬT
-# ==============================
-check_update() {
-  NEW_VERSION=$(curl -s "$BASE_URL/version.txt")
-
-  if [ "$NEW_VERSION" != "$VERSION" ]; then
-    echo -e "${YELLOW}🚀 ĐANG CẬP NHẬT TOOL...${NC}"
-    curl -s -o tool.sh "$BASE_URL/tool.sh"
-    chmod +x tool.sh
-    echo -e "${GREEN}✅ ĐÃ CẬP NHẬT - MỞ LẠI TOOL${NC}"
-    exit 0
-  fi
-}
-
-
-# ==============================
-# TẢI CORE (CHẠY BASE64)
+# LOAD CORE (GitHub Release)
 # ==============================
 load_core() {
+  URL="https://github.com/khanhitpro/khanhtool/releases/download/adb/core.txt"
   TMP="/sdcard/Download/core.txt"
-  curl -s "$BASE_URL/core.txt" -o "$TMP"
-  if [ ! -s "$TMP" ]; then
-    echo -e "${RED}❌ TẢI CORE THẤT BẠI${NC}"
+
+  echo -e "${YELLOW}📥 Đang tải core...${NC}"
+  curl -fsSL "$URL" -o "$TMP" || {
+    echo -e "${RED}❌ Tải thất bại${NC}"
     exit 1
-  fi
+  }
+
+  [ ! -s "$TMP" ] && {
+    echo -e "${RED}❌ File rỗng${NC}"
+    exit 1
+  }
+
+  echo -e "${CYAN}🔓 Đang giải mã...${NC}"
   CODE=$(base64 -d "$TMP" 2>/dev/null)
-  if [ -z "$CODE" ]; then
-    echo -e "${RED}❌ GIẢI MÃ THẤT BẠI${NC}"
+
+  [ -z "$CODE" ] && {
+    echo -e "${RED}❌ Decode lỗi${NC}"
     exit 1
-  fi
+  }
+
+  echo -e "${GREEN}🚀 Chạy core...${NC}"
   bash -c "$CODE"
 }
-
 
 # ==============================
 # CHẠY TOOL
