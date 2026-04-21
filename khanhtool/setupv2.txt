@@ -1,0 +1,3 @@
+rm -f khanhtv.sh && nano khanhtv.sh
+chmod +x khanhtv.sh
+./khanhtv.sh
